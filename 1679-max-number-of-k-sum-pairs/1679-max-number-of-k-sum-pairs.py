@@ -1,17 +1,18 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        counter = {}
         count = 0
+        nums.sort()
+        i, j =  0, len(nums)-1
         
-        for num in nums:
-            x = k-num
-            if x in counter and counter[x]>0:
+        while(i<j):
+            if(nums[i] + nums[j] == k):
                 count += 1
-                counter[x] -= 1
+                i += 1
+                j -= 1
+            elif(nums[i] + nums[j] > k):
+                j -= 1
             else:
-                if num not in counter:
-                    counter[num] = 0
-                counter[num] += 1
+                i += 1
 
         
         return count           
