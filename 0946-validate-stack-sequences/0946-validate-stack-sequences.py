@@ -8,5 +8,5 @@ class Solution:
                 stack.pop()
                 count += 1
                 
-        return count == len(popped)        
+        return stack == []        
         
