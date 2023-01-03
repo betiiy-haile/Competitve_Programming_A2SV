@@ -1,12 +1,9 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        ransomNoteCount = Counter(ransomNote)
-        magazineCount = Counter(magazine)
         
-        for ch in ransomNoteCount:
-            if ch not in magazineCount or ransomNoteCount[ch] > magazineCount[ch]:
+        unique = list(set(ransomNote))
+        for letter in unique:
+            if letter not in magazine or ransomNote.count(letter) > magazine.count(letter):
                 return False
-            
         return True
-        
         
