@@ -1,17 +1,16 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-             
-        lengthOfTrip = [0]*1001 
-        for trip, i, j in trips:
-            lengthOfTrip[i] += trip 
-            lengthOfTrip[j] -= trip 
-            
+        
+        lst = []
+        for people,start, end in trips:
+            lst.append((start, people))
+            lst.append((end, -people))
+        lst.sort()
         current = 0
-        for i in range( len(lengthOfTrip) ):
-            current += lengthOfTrip[i] 
-            if current > capacity: 
-                return False               
-            
-        return True 
-
+        for i in lst:
+            current += i[1]
+            if current > capacity:
+                return False
+        return True
+        
                 
