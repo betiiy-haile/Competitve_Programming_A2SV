@@ -1,8 +1,12 @@
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
-#         while n > 1:
-#             n /= 3            
-#         return True if n == 1 else False
+        # non recursive approach
+        # while n > 1:
+        #     n /= 3            
+        # return True if n == 1 else False
+               
+
+        # recursive approach
         if n <= 0:
             return False
         if n == 1:
