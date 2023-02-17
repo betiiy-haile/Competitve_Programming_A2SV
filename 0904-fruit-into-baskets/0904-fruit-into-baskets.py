@@ -1,22 +1,28 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        max_len = 0
-        left = 0
-        unique = 0
-        counter = Counter()
+        first = -1
+        second = -1
+        secondCount = 0
+        currMax = 0
+        Max = 0
         
-        for right in range(len(fruits)):
-            counter[fruits[right]] += 1
-            
-            if counter[fruits[right]] == 1:
-                unique += 1
+        for fruit in fruits:
+            if fruit == first or fruit == second:
+                currMax += 1
+            else:
+                currMax = secondCount + 1
+        
+            if fruit == second:
+                secondCount += 1
+            else:
+                secondCount = 1
                 
-            while unique > 2:
-                counter[fruits[left]] -= 1                
-                if counter[fruits[left]] == 0:
-                    unique -= 1
-                left += 1
-            curr_len = right - left + 1
-            max_len = max(max_len,curr_len)
+            if(fruit != second):
+                first = second
+                second = fruit
+                
+            Max = max(Max,currMax)
+        return Max
             
-        return max_len    
+
+        
