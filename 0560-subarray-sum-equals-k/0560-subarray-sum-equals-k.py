@@ -1,18 +1,17 @@
 class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:        
-        count, total = 0, 0
-        dict = {0:1}
-        for i in nums:
-            total += i
-
-            if dict.get(total-k):
-
-                count += dict[total-k]   
-
-            if dict.get(total):                
-                dict[total] += 1                
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count = 0
+        Sum = 0
+        d = {0:1}
+        for i in range(len(nums)):
+            Sum += nums[i]
+            
+            if d.get(Sum-k):
+                count += d[Sum-k]
+                
+            if d.get(Sum):
+                d[Sum] += 1
             else:
-                dict[total] = 1
+                d[Sum] = 1
+                
         return count
-
-        
