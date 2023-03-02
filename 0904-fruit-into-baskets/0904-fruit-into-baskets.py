@@ -1,22 +1,17 @@
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        max_len = 0
+        d = defaultdict(int)
+        maxLen = 0
         left = 0
-        unique = 0
-        counter = Counter()
-        
         for right in range(len(fruits)):
-            counter[fruits[right]] += 1
-            
-            if counter[fruits[right]] == 1:
-                unique += 1
-                
-            while unique > 2:
-                counter[fruits[left]] -= 1                
-                if counter[fruits[left]] == 0:
-                    unique -= 1
+            d[fruits[right]] += 1            
+            while len(d) > 2:
+                d[fruits[left]] -= 1
+                if d[fruits[left]] == 0:
+                    d.pop(fruits[left])
                 left += 1
-            curr_len = right - left + 1
-            max_len = max(max_len,curr_len)
-            
-        return max_len    
+            maxLen = max(maxLen , right-left+1)
+                
+        return maxLen
+    
+    

@@ -6,12 +6,12 @@ class Solution:
         zeroCount = 0
         while left <= right and right < len(nums):
             if nums[right] == 0:
-                zeroCount +=1
+                zeroCount +=1 #2
             if zeroCount > 1:
-                if nums[left]==0:
+                if nums[left] == 0:
                     zeroCount -=1
                 left +=1
-            ans = max(ans,right-left )
+            ans = max(ans,right-left ) 
             right +=1
         
         return ans
