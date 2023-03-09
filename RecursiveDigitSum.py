@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import math
 import os
 import random
@@ -19,13 +21,14 @@ def getSum(n):
         return int(n)
     for i in n:
         x += int(i)
-    getSum(str(x))  
+    val = getSum(str(x))  
+    return val
 
 def superDigit(n, k):
-    num = ""
-    for i in range(k):
-        num += n    
-    return getSum(num)
+    num = 0
+    for i in n:
+        num += int(i)    
+    return getSum(str(num*k))
     
     
     # Write your code here
