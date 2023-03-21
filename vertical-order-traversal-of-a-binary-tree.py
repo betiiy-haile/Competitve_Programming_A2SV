@@ -7,29 +7,22 @@
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
         vertical = defaultdict(list)
-
-        def frustrating(node, row, col) :
+        def Traverse(node, row, col):
             if not node:
-                return        
+                return     
             
-            frustrating(node.left, row + 1, col - 1)
+            Traverse(node.left, row + 1, col - 1)
             vertical[col].append((row, node.val))
-            # vertical[col].sort()
-            frustrating(node.right, row + 1, col + 1)
+            Traverse(node.right, row + 1, col + 1)
         
-        tired = defaultdict(list)
-
-        frustrating(root, 0, 0)
+        SortByLevel = defaultdict(list)
+        Traverse(root, 0, 0)
 
         for c, v in vertical.items():
             for x in sorted(v):
-                tired[c].append(x[1])
+                SortByLevel[c].append(x[1])
         
-        t = list(tired.keys())
+        t = list(SortByLevel.keys())
         t.sort()
-        output =   [ tired[i] for i in t]
-
-
-
-        # print(vertical)
+        output =[ SortByLevel[i] for i in t]
         return output
