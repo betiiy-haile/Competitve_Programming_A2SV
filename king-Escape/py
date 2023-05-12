@@ -1,0 +1,33 @@
+n= int(input())
+alice = list(map(int, input().split()))
+bob = list(map(int, input().split()))
+target = list(map(int, input().split()))
+ 
+bobLoc = []
+targetLoc = []
+ 
+if bob[0] > alice[0]:
+    bobLoc.append("R")
+else:
+    bobLoc.append("L")
+ 
+if bob[1] >  alice[1]:
+    bobLoc.append("U")
+else:
+    bobLoc.append("D")
+ 
+if target[0] > alice[0]:
+    targetLoc.append("R")
+else:
+    targetLoc.append("L")
+ 
+if target[1] > alice[1]:
+    targetLoc.append("U")
+else:
+    targetLoc.append("D")
+ 
+ 
+if bobLoc == targetLoc:
+    print("YES")
+else:
+    print("NO")
