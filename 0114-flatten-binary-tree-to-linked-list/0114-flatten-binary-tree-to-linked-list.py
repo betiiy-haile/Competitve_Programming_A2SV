@@ -9,32 +9,23 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        if not root:
-            return
-        
         def preOrder(root):
             if not root:
-                return          
-                        
-                       
-            left = root.left            
-            right = root.right     
+                return
+            left = root.left
+            right = root.right
             
-            preOrder(root.left)                
+            preOrder(left)
             root.right = left
             root.left = None
-
+            
+            preOrder(right)
             while root.right:
                 root = root.right
-            
-            
+                
             root.right = right
-                
-            preOrder(right)
-                
             return root
         
         preOrder(root)
-
-
+                
         
