@@ -1,15 +1,16 @@
 class Solution:
     def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
-        count = defaultdict(list)
-        for idx, group in enumerate(groupSizes):
-            count[group].append(idx)
-
-        count = dict(sorted(count.items()))
-
+        groups = {}
         ans = []
-        for key, value in count.items():
-            for i in range(0, len(value), key):
-                ans.append(value[i:i+key])
+
+        for i, size in enumerate(groupSizes):
+            if size not in groups:
+                groups[size] = []
+
+            groups[size].append(i)
+
+            if len(groups[size]) == size:
+                ans.append(groups[size])
+                groups[size] = []
 
         return ans
-        
