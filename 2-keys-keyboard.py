@@ -1,16 +1,20 @@
 class Solution:
     def minSteps(self, n: int) -> int:
-        # finding sum of its prime factors
-        ans = 0
-        d = 2
+        
+        @cache
+        def dp(length, board):
+            if length == n:
+                return 0
+            if length > n:
+                return float("inf")
 
-        while d * d <= n:
-            while n % d == 0:
-                ans += d
-                n /= d
-            d += 1
+            copyPaste = float("inf")
+            paste = float("inf")
 
-        if n > 1:
-            ans += n
+            copyPaste = dp(length * 2, length) + 2
+            if board:
+                paste = dp(length + board, board) + 1
 
-        return int(ans)
+            return min(copyPaste, paste)
+
+        return dp(1, 0)
